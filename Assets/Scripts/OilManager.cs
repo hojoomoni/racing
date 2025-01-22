@@ -1,7 +1,6 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.Serialization;
-using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class OilManager : MonoBehaviour
 {
@@ -28,6 +27,11 @@ public class OilManager : MonoBehaviour
         if (oilText != null)
         {
             oilText.text = Mathf.Floor(oil).ToString();  
+        }
+
+        if (oil == 0)
+        {
+            SceneManager.LoadScene("GameOver");
         }
     }
 }

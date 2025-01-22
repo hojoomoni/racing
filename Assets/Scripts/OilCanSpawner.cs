@@ -5,8 +5,8 @@ public class OilCanSpawner : MonoBehaviour
 {
     public GameObject oilCanPrefab;
     public Transform[] spawnPoints;
-    public float spawnInterval = 5f;
-
+    public float spawnInterval = 11f;
+    
     void Start()
     {
         StartCoroutine(SpawnOilCanRepeatedly());

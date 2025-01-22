@@ -1,8 +1,17 @@
+using System;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Serialization;
 
-public class FuelMovement : MonoBehaviour
+public class MoveOilCan : MonoBehaviour
 {
-    public float fallSpeed = 5f;
+    public OilManager oilManager;
+    public float fallSpeed = 9.5f;
+
+    private void Start()
+    {
+        oilManager = FindObjectOfType<OilManager>();
+    }
 
     void Update()
     {
@@ -10,6 +19,20 @@ public class FuelMovement : MonoBehaviour
 
         if (transform.position.z < -16f)
         {
+            Destroy(gameObject);
+        }
+    }
+    
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Car"))
+        {
+            oilManager.oil += oilManager.oilIncrease;
+            if (oilManager.oil > 1000f)
+            {
+                oilManager.oil = 1000f;
+            }
+
             Destroy(gameObject);
         }
     }
